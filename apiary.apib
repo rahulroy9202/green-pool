@@ -7,6 +7,7 @@ GP API is a *Commuter Social Network* service bringing people together.
 # Group RealTime Location Services
 Location Services of **GP API** available after login
 
+
 ## Set User Destination [/user/destination]
 ### destination location [POST]
 + Request (application/json)
@@ -27,6 +28,7 @@ Location Services of **GP API** available after login
 + Response 200 (application/json)
 
         {"status": 200} 
+
 
 ## Get GreenPool Users in Proximity [/user/peers]
 ### return location array [POST]
@@ -80,3 +82,26 @@ User selects a particular peer for details
 
         { "userid": "aaaa2222", "destination": {"name":"end of world","lat": 180,"long": 180} }
 
+
+## User Requesting Ride [/{id}/requestride/]
+### RequestRide [POST]
++ Request (application/json)
+
+        { "userid1": "aaaa1111", "userid2": "aaaa2222" } requesting user and requested user id
+
++ Response 202 (application/json)
+        
+        { "status":"pending", "requestid": 2222 }
+
+
+## User Specific Ride Requests [/{id}/myrequests/]
+### Get Ride Requests [GET]
++ Request (application/json)
+
+        { "lastsynctime": "dateobject"} 
+
++ Response 202 (application/json)
+
+        [{"userid": "a", "location": {"lat": 177, "long": 177}},
+         {"userid": "b", "location": {"lat": 177, "long": 177}},
+         {"userid": "c", "location": {"lat": 177, "long": 177}}]
