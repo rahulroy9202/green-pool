@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://www.google.com
+HOST: http://greenpool-c9-rahulroy9202.c9.io
 
 # GP
 GP API is a *Commuter Social Network* service bringing people together.
@@ -47,8 +47,8 @@ Location Services of **GP API** available after login
 # Group Users
 User related resources of the **GP API**
 
-##User Authentication [/user]
-### Login [POST]
+## User Authentication [/user]
+### Login [GET]
 + Request (application/json)
 
         { "userid": "aaaa1111", "password#": "bbbb2222" }
@@ -56,6 +56,18 @@ User related resources of the **GP API**
 + Response 202 (application/json)
         
         { "status":"logged_in", "id": 2222 }
+
+
+## User SignUp [/newuser]
+### SignUp [POST]
++ Request (application/json)
+
+        { "userid": "aaaa1111", "password#": "bbbb2222", "email": "test@example.com" }
+
++ Response 202 (application/json)
+        
+        { "status":"successfull", "id": 2222 }
+
 
 ## User Profile [/user/{id}]
 ### Get Profile Details [GET]
