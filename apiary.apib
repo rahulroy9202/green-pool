@@ -7,6 +7,16 @@ Notes API is a *short texts saving* service similar to its physical paper presen
 # Group Notes
 Notes related resources of the **Notes API**
 
+##User Authentication [/user]
+### Login [POST]
++ Request (application/json)
+
+        { "userid": "aaaa1111", "password#": "bbbb2222" }
+
++ Response 201 (application/json)
+        
+        { "status":"logged_in", "key": 2222 }
+
 ## Notes Collection [/notes]
 ### List all Notes [GET]
 + Response 200 (application/json)
