@@ -2,10 +2,50 @@ FORMAT: 1A
 HOST: http://www.google.com
 
 # GP
-Notes API is a *short texts saving* service similar to its physical paper presence on your table.
+GP API is a *Commuter Social Network* service bringing people together.
 
-# Group Notes
-Notes related resources of the **Notes API**
+# Group RealTime Location Services
+Location Services of **GP API** available after login
+
+## Set User Destination [/user/destination]
+### destination location [POST]
++ Request (application/json)
+
+        {"lat": 180, "long": 180 , "name": "end of the world"}
+    
++ Response 200 (application/json)
+
+        {"status": 2 , "comment": "destination_set" }
+
+
+## Set User Current Location [/user/currloc]
+### current location [POST]
++ Request (application/json)
+
+        {"lat": 180, "long": 180 }
+
++ Response 200 (application/json)
+
+        {"status": 200} 
+
+## Get GreenPool Users in Proximity [/user/peers]
+### return location array [POST]
++ Request (application/json)
+
+        {"lat": 180, "long": 180 }
+
++ Response 200 (application/json)
+
+        [
+         {"userid": "aaaa1111", "location": {"lat": 177, "long": 177}},
+         {"userid": "aaaa2222", "location": {"lat": 178, "long": 178}},
+         {"userid": "aaaa3333", "location": {"lat": 179, "long": 179}},
+         {"userid": "aaaa4444", "location": {"lat": 181, "long": 181}}
+        ]
+
+
+# Group Users
+User related resources of the **GP API**
 
 ##User Authentication [/user]
 ### Login [POST]
@@ -13,45 +53,18 @@ Notes related resources of the **Notes API**
 
         { "userid": "aaaa1111", "password#": "bbbb2222" }
 
-+ Response 201 (application/json)
++ Response 202 (application/json)
         
-        { "status":"logged_in", "key": 2222 }
+        { "status":"logged_in", "id": 2222 }
 
-## Notes Collection [/notes]
-### List all Notes [GET]
-+ Response 200 (application/json)
-
-        [{
-          "id": 1, "title": "Jogging in park"
-        }, {
-          "id": 2, "title": "Pick-up posters from post-office"
-        }]
-
-### Create a Note [POST]
+## User Profile [/user/{id}]
+### Get Profile Details [GET]
+User selects a particular peer for details
 + Request (application/json)
 
-        { "title": "Buy cheese and bread for breakfast." }
+        { "userid": "aaaa1111" } id of current user. will be used to log info of profile access.
 
-+ Response 201 (application/json)
-
-        { "id": 3, "title": "Buy cheese and bread for breakfast." }
-
-## Note [/notes/{id}]
-A single Note object with all its details
-
-+ Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
-
-### Retrieve a Note [GET]
 + Response 200 (application/json)
 
-    + Header
+        { "userid": "aaaa2222", "destination": {"name":"end of world","lat": 180,"long": 180} }
 
-            X-My-Header: The Value
-
-    + Body
-
-            { "id": 2, "title": "Pick-up posters from post-office" }
-
-### Remove a Note [DELETE]
-+ Response 204
